@@ -20,9 +20,9 @@ return new class extends Migration {
             $table->unsignedBigInteger('family_id')->nullable()->default(NULL);
             $table->boolean('cross_gen')->default(false);
             $table->string('type_1');
-            $table->string('type_2');
+            $table->string('type_2')->nullable()->default(NULL);
             $table->string('weather_1');
-            $table->string('weather_2');
+            $table->string('weather_2')->nullable()->default(NULL);
             $table->unsignedBigInteger('stats_total');
             $table->unsignedBigInteger('stats_attack');
             $table->unsignedBigInteger('stats_defend');
@@ -32,6 +32,7 @@ return new class extends Migration {
             $table->boolean('spawns')->default(0);
             $table->boolean('regional')->default(0);
             $table->unsignedBigInteger('hatchable');
+            $table->boolean('raidable');
             $table->boolean('shiny');
             $table->boolean('nest');
             $table->boolean('new');
