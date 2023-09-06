@@ -55,9 +55,19 @@ class AnimalController extends Controller{
     public function store(Request $request){
         $animalFields = $request->json();
 
-        $animal = Animal::query()->insert([$animalFields]);
+        $inserted = Animal::query()->insert([$animalFields->all()]);
 
-        return response()->json($animal, 201);
+        if($inserted){
+            return response()->json([
+                'success' => true,
+                'msg' => 'animal inserted successfully'
+            ], 201);
+        }
+
+        return response([
+            'success' => 0,
+            'msg' => 'something is wrong'
+        ], 401);
     }
 
     /**
@@ -92,6 +102,16 @@ class AnimalController extends Controller{
      * Remove the specified resource from storage.
      */
     public function destroy(Animal $animal){
-        $animal->delete();
+        if($animal->delete()){
+            return response([
+                'success' => 1,
+                'msg' => 'deleted successfully'
+            ], 201);
+        }
+
+        return response([
+            'success' => 0,
+            'msg' => 'wrong animal id provided'
+        ], 401);
     }
 }

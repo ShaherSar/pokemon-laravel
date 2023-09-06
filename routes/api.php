@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\AnimalController;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('Animals', \App\Http\Controllers\AnimalController::class)->except([
+Route::resource('animals', AnimalController::class)->except([
     'edit',
     'create'
 ]);
